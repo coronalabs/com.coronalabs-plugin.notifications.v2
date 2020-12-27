@@ -4,7 +4,7 @@ local metadata =
 	{
 		format = "staticLibrary",
 		staticLibs = { 'NotificationsV2Plugin',   }, 
-		frameworks = { 'GoogleUtilities', 'protobuf', 'FBLPromises', 'FirebaseInstanceID', 'FirebaseMessaging', 'FirebaseInstallations', 'FirebaseCore', },
+		frameworks = { },
 		frameworksOptional = { "UserNotifications", "UserNotificationsUI" },
 		delegates = { "CoronaNotificationsDelegate" }
 	}

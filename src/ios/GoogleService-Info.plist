@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>269847656539-68a88n853uauiflldm7ksu8fungbt53f.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.269847656539-68a88n853uauiflldm7ksu8fungbt53f</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>269847656539-hm7n42af4qr8ndmu4hkqtfr9qauss53t.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC_LgDXzWxRCS8T4YaBi52y_CP57W9_pXs</string>
+	<key>GCM_SENDER_ID</key>
+	<string>269847656539</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.coronalabs.firebase.messaging</string>
+	<key>PROJECT_ID</key>
+	<string>leafy-valor-187712</string>
+	<key>STORAGE_BUCKET</key>
+	<string>leafy-valor-187712.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:269847656539:ios:57128d3b378f61168b677e</string>
+	<key>DATABASE_URL</key>
+	<string>https://leafy-valor-187712.firebaseio.com</string>
+</dict>
+</plist>

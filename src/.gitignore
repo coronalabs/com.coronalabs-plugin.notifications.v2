@@ -1,0 +1,8 @@
+*xcuser*
+build/
+BuiltPlugin/
+ios/libNotificationsV2Plugin.a
+ios/libNotificationsV2Plugin.firebase.a
+.gradle/
+build/
+.idea/

@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "532108303969",
+    "firebase_url": "https://fir-cloud-messaging-16d9a.firebaseio.com",
+    "project_id": "fir-cloud-messaging-16d9a",
+    "storage_bucket": "fir-cloud-messaging-16d9a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532108303969:android:a7f606ca19b0b13b",
+        "android_client_info": {
+          "package_name": "com.coronalabs.firebase.messaging"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "532108303969-6hgarnooc5dclgmb7q9lu4f2k5l6qs9p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAdBEHHph7nxPlcAtpAkMXhIS5cSpOhcK8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

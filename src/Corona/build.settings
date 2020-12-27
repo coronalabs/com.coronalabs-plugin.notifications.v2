@@ -1,0 +1,31 @@
+settings =
+{
+	orientation =
+	{
+		default = "portrait",
+		supported = { "portrait" }
+	},
+
+	iphone =
+	{
+		useGoogleServicesJson = true,
+		xcassets = "Images.xcassets",
+		plist =
+		{
+			UIBackgroundModes = {"remote-notification"},
+			FirebaseAppDelegateProxyEnabled = false,
+		}
+	},
+
+	android =
+	{
+		minSDKVersion = 16,
+		useGoogleServicesJson = true,
+	},
+
+	plugins =
+	{
+		["plugin.notifications.v2.firebase"] = { publisherId = "com.coronalabs", },
+		-- ["plugin.notifications.v2"] = { publisherId = "com.coronalabs", },
+	}
+}
