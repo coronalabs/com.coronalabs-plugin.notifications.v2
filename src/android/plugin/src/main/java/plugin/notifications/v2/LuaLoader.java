@@ -19,6 +19,8 @@ import com.naef.jnlua.JavaFunction;
 import com.naef.jnlua.LuaType;
 import com.naef.jnlua.NamedJavaFunction;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -208,23 +210,23 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
          * <p>
          * Warning! This method is not called on the main UI thread.
          *
-         * @param luaState Reference to the Lua state.
+         * @param L Reference to the Lua state.
          *                 Needed to retrieve the Lua function's parameters and to return values back to Lua.
          * @return Returns the number of values to be returned by the Lua function.
          */
         @Override
-        public int invoke(final LuaState luaState) {
-            functionSignature = "notifications.registerForPushNotifications( options )";
+        public int invoke(final LuaState L) {
 
-            // check number of args
-            int nargs = luaState.getTop();
-            if (nargs > 1) {
-                logMsg(ERROR_MSG, "Expected 0 or 1 argument, got " + nargs);
-                return 0;
+            if(L.isTable(1)) {
+                L.getField(1, "useFCM");
+                if(L.type(-1) == LuaType.BOOLEAN) {
+                    SharedPreferences preferences = CoronaEnvironment.getApplicationContext().getSharedPreferences(CoronaFirebaseMessagingService.PREFERENCE_FILE, Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putBoolean(CoronaFirebaseMessagingService.SKIP_FCM, !L.toBoolean(-1));
+                    editor.apply();
+                }
+                L.pop(1);
             }
-
-            // NOP
-            // iOS feature only
 
             return 0;
         }
