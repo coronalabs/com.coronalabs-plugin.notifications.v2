@@ -16,10 +16,22 @@
 
 #import <Foundation/Foundation.h>
 
+@class FBLPromise<Value>;
+@class GULURLSessionDataResponse;
+
 NS_ASSUME_NONNULL_BEGIN
 
-/** Returns the current version of Firebase. */
-NS_SWIFT_NAME(FirebaseVersion())
-NSString* FIRFirebaseVersion(void);
+/** Promise based API for `NSURLSession`. */
+@interface NSURLSession (GULPromises)
+
+/** Creates a promise wrapping `-[NSURLSession dataTaskWithRequest:completionHandler:]` method.
+ * @param URLRequest The request to create a data task with.
+ * @return A promise that is fulfilled when an HTTP response is received (with any response code),
+ * or is rejected with the error passed to the task completion.
+ */
+- (FBLPromise<GULURLSessionDataResponse *> *)gul_dataTaskPromiseWithRequest:
+    (NSURLRequest *)URLRequest;
+
+@end
 
 NS_ASSUME_NONNULL_END

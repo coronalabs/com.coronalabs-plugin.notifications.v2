@@ -1,5 +1,5 @@
 /*
- * Copyright 2019 Google
+ * Copyright 2020 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,4 +14,18 @@
  * limitations under the License.
  */
 
-#import "FIRInstanceID.h"
+#import <Foundation/Foundation.h>
+
+NS_ASSUME_NONNULL_BEGIN
+
+/** The class represents HTTP response received from `NSURLSession`. */
+@interface GULURLSessionDataResponse : NSObject
+
+@property(nonatomic, readonly) NSHTTPURLResponse *HTTPResponse;
+@property(nonatomic, nullable, readonly) NSData *HTTPBody;
+
+- (instancetype)initWithResponse:(NSHTTPURLResponse *)response HTTPBody:(nullable NSData *)body;
+
+@end
+
+NS_ASSUME_NONNULL_END

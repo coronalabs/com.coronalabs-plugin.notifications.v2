@@ -21,7 +21,6 @@
 #import "CoronaNotificationsV2Helper.h"
 #if PLUGIN_FIREBASE
 #import <FirebaseCore/FirebaseCore.h>
-#import <FirebaseInstanceID/FirebaseInstanceID.h>
 #import <FirebaseMessaging/FirebaseMessaging.h>
 #endif
 #import <UserNotifications/UserNotifications.h> // iOS 10+

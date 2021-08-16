@@ -95,8 +95,6 @@
 		F53564E82598ACF200F9A089 /* libNotificationsV2Plugin.firebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F53564952598AC6C00F9A089 /* libNotificationsV2Plugin.firebase.a */; };
 		F53565632598D08500F9A089 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F583389F23EA7ABB00E0B97E /* FirebaseCore.framework */; };
 		F53565642598D08500F9A089 /* FirebaseCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F583389F23EA7ABB00E0B97E /* FirebaseCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F53565662598D08700F9A089 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F583389E23EA7ABB00E0B97E /* FirebaseInstanceID.framework */; };
-		F53565672598D08700F9A089 /* FirebaseInstanceID.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F583389E23EA7ABB00E0B97E /* FirebaseInstanceID.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F53565682598D08900F9A089 /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F583389C23EA7ABB00E0B97E /* FirebaseMessaging.framework */; };
 		F53565692598D08900F9A089 /* FirebaseMessaging.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F583389C23EA7ABB00E0B97E /* FirebaseMessaging.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F535656A2598D0DA00F9A089 /* FirebaseInstallations.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F583389D23EA7ABB00E0B97E /* FirebaseInstallations.framework */; };
@@ -163,7 +161,6 @@
 				F53565702598D14B00F9A089 /* FirebaseCoreDiagnostics.framework in Embed Frameworks */,
 				F53565782598D1BE00F9A089 /* FBLPromises.framework in Embed Frameworks */,
 				F535656D2598D11900F9A089 /* GoogleUtilities.framework in Embed Frameworks */,
-				F53565672598D08700F9A089 /* FirebaseInstanceID.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,7 +298,6 @@
 				F53564AB2598AC7400F9A089 /* AssetsLibrary.framework in Frameworks */,
 				F53565772598D1BE00F9A089 /* FBLPromises.framework in Frameworks */,
 				F53565722598D17200F9A089 /* GoogleDataTransport.framework in Frameworks */,
-				F53565662598D08700F9A089 /* FirebaseInstanceID.framework in Frameworks */,
 				F53564AC2598AC7400F9A089 /* CoreText.framework in Frameworks */,
 				F53565752598D18E00F9A089 /* nanopb.framework in Frameworks */,
 				F53564AD2598AC7400F9A089 /* CoreVideo.framework in Frameworks */,

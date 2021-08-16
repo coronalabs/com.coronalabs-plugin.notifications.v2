@@ -1,5 +1,5 @@
 /*
- * Copyright 2020 Google LLC
+ * Copyright 2018 Google LLC
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,11 +15,22 @@
  */
 
 #import <Foundation/Foundation.h>
+#import "GDTCORTargets.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/** Returns the current version of Firebase. */
-NS_SWIFT_NAME(FirebaseVersion())
-NSString* FIRFirebaseVersion(void);
+/* Class that manages the endpoints used by Google data transport library. */
+@interface GDTCOREndpoints : NSObject
+
+- (instancetype)init NS_UNAVAILABLE;
+
+/** Returns the upload URL for a target specified. If the target is not available, returns nil.
+ *
+ *  @param target GoogleDataTransport target for which the upload URL is being looked up for.
+ *  @return URL that will be used for uploading the events for the provided target.
+ */
++ (nullable NSURL *)uploadURLForTarget:(GDTCORTarget)target;
+
+@end
 
 NS_ASSUME_NONNULL_END
