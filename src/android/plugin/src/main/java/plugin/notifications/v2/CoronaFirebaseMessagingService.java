@@ -21,8 +21,7 @@ import com.google.firebase.messaging.RemoteMessage;
 // Class definition
 // -------------------------------------------------------
 
-public class CoronaFirebaseMessagingService extends FirebaseMessagingService
-{
+public class CoronaFirebaseMessagingService extends FirebaseMessagingService {
     public static String PREFERENCE_FILE = "fcm-notifications";
     public static String SKIP_FCM = "skipFCM";
 
@@ -31,20 +30,24 @@ public class CoronaFirebaseMessagingService extends FirebaseMessagingService
     }
 
     private boolean ignoreFCM() {
-        SharedPreferences preferences = CoronaEnvironment.getApplicationContext().getSharedPreferences(PREFERENCE_FILE, Context.MODE_PRIVATE);
-        return preferences.getBoolean(SKIP_FCM, false);
+        try {
+            SharedPreferences preferences = getApplicationContext().getSharedPreferences(PREFERENCE_FILE, Context.MODE_PRIVATE);
+            return preferences.getBoolean(SKIP_FCM, false);
+        } catch (Throwable ignore) {
+        }
+        return false;
     }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
-        if(ignoreFCM()) return;;
+        if (ignoreFCM()) return;
         super.onMessageReceived(remoteMessage);
         NotificationsV2Helper.processRemoteMessage(remoteMessage, getApplicationContext());
     }
 
     @Override
-    public void onNewToken( String deviceToken ) {
-        if(ignoreFCM()) return;;
+    public void onNewToken(String deviceToken) {
+        if (ignoreFCM()) return;
         super.onNewToken(deviceToken);
         NotificationRegistrationTask registrationTask = new NotificationRegistrationTask(deviceToken);
         for (com.ansca.corona.CoronaRuntime runtime : com.ansca.corona.CoronaRuntimeProvider.getAllCoronaRuntimes()) {
