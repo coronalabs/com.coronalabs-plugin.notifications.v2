@@ -9,6 +9,7 @@ import org.apache.tools.ant.filters.StringInputStream
 
 plugins {
     id("com.android.application")
+    id("com.google.gms.google-services")
 }
 
 //<editor-fold desc="Utility Variables Setup" defaultstate="collapsed">
@@ -1059,6 +1060,7 @@ tasks.register<Zip>("createExpansionFile") {
 //</editor-fold>
 
 dependencies {
+
     if (coronaBuiltFromSource) {
         implementation(project(":Corona"))
         implementation(files("$rootDir/../../plugins/build/licensing-google/android/bin/classes.jar"))

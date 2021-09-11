@@ -7,24 +7,21 @@
 
 package plugin.notifications.v2;
 
-import com.ansca.corona.CoronaActivity;
-import com.ansca.corona.CoronaRuntimeTaskDispatcher;
-import com.ansca.corona.CoronaEnvironment;
-import com.ansca.corona.CoronaRuntime;
-import com.ansca.corona.CoronaRuntimeListener;
-import com.ansca.corona.Bridge;
-
-import com.google.android.gms.tasks.Task;
-import com.naef.jnlua.LuaState;
-import com.naef.jnlua.JavaFunction;
-import com.naef.jnlua.LuaType;
-import com.naef.jnlua.NamedJavaFunction;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import com.ansca.corona.Bridge;
+import com.ansca.corona.CoronaActivity;
+import com.ansca.corona.CoronaEnvironment;
+import com.ansca.corona.CoronaRuntime;
+import com.ansca.corona.CoronaRuntimeListener;
+import com.ansca.corona.CoronaRuntimeTaskDispatcher;
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.naef.jnlua.JavaFunction;
+import com.naef.jnlua.LuaState;
+import com.naef.jnlua.LuaType;
+import com.naef.jnlua.NamedJavaFunction;
 
 /**
  * Implements the Lua interface for the plugin.
@@ -263,12 +260,12 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
                 logMsg(ERROR_MSG, "Expected no arguments, got " + nargs);
                 return 0;
             }
-            Task<String> tokenTask = FirebaseMessaging.getInstance().getToken();
+            String deviceToken = null;
             try {
-                tokenTask.wait(1000);
-            } catch (InterruptedException ignore) {
+                deviceToken = FirebaseMessaging.getInstance().getToken().getResult();
+            } catch (Throwable ex) {
+                ex.printStackTrace();
             }
-            String deviceToken = tokenTask.getResult();
 
             if (deviceToken == null) {
                 deviceToken = "unknown";
