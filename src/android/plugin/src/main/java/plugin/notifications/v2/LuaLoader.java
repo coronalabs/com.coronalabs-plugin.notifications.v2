@@ -14,6 +14,7 @@ import com.ansca.corona.CoronaRuntime;
 import com.ansca.corona.CoronaRuntimeListener;
 import com.ansca.corona.Bridge;
 
+import com.google.android.gms.tasks.Task;
 import com.naef.jnlua.LuaState;
 import com.naef.jnlua.JavaFunction;
 import com.naef.jnlua.LuaType;
@@ -24,7 +25,6 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.google.firebase.iid.FirebaseInstanceId;
 
 /**
  * Implements the Lua interface for the plugin.
@@ -194,7 +194,7 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
     }
 
     // [Lua] registerForPushNotifications( {options} )
-    private class RegisterForPushNotifications implements NamedJavaFunction {
+    private static class RegisterForPushNotifications implements NamedJavaFunction {
         /**
          * Gets the name of the Lua function as it would appear in the Lua script.
          *
@@ -263,8 +263,12 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
                 logMsg(ERROR_MSG, "Expected no arguments, got " + nargs);
                 return 0;
             }
-
-            String deviceToken = FirebaseInstanceId.getInstance().getToken();
+            Task<String> tokenTask = FirebaseMessaging.getInstance().getToken();
+            try {
+                tokenTask.wait(1000);
+            } catch (InterruptedException ignore) {
+            }
+            String deviceToken = tokenTask.getResult();
 
             if (deviceToken == null) {
                 deviceToken = "unknown";
