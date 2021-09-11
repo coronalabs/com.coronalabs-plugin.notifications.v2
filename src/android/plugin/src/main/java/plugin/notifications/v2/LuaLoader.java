@@ -17,11 +17,14 @@ import com.ansca.corona.CoronaEnvironment;
 import com.ansca.corona.CoronaRuntime;
 import com.ansca.corona.CoronaRuntimeListener;
 import com.ansca.corona.CoronaRuntimeTaskDispatcher;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.naef.jnlua.JavaFunction;
 import com.naef.jnlua.LuaState;
 import com.naef.jnlua.LuaType;
 import com.naef.jnlua.NamedJavaFunction;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Implements the Lua interface for the plugin.
@@ -262,7 +265,9 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
             }
             String deviceToken = null;
             try {
-                deviceToken = FirebaseMessaging.getInstance().getToken().getResult();
+                Task<String> deviceTokenTask = FirebaseMessaging.getInstance().getToken();
+                Tasks.await(deviceTokenTask, 1000, TimeUnit.MILLISECONDS);
+                deviceToken = deviceTokenTask.getResult();
             } catch (Throwable ex) {
                 ex.printStackTrace();
             }
