@@ -43,11 +43,11 @@ echo "OUTPUT_DIR: $OUTPUT_DIR"
 checkError
 
 # iOS
-xcodebuild -project "$path/Plugin.xcodeproj" -configuration $CONFIG -sdk iphoneos -alltargets
+xcodebuild -project "$path/Plugin.xcodeproj" -configuration $CONFIG -sdk iphoneos -alltargets -UseModernBuildSystem=NO
 checkError
 
 # iOS-sim
-xcodebuild -project "$path/Plugin.xcodeproj" -configuration $CONFIG -sdk iphonesimulator -alltargets
+xcodebuild -project "$path/Plugin.xcodeproj" -configuration $CONFIG -sdk iphonesimulator -alltargets -UseModernBuildSystem=NO
 checkError
 
 # create universal binary
@@ -126,6 +126,3 @@ TARGET_NAME=NotificationsV2Plugin
 build_plugin_structure "$OUTPUT_DIR/BuiltPlugin/Regular/iphone" iphoneos  " -extract armv7 -extract  arm64 " EmbeddedFrameworks-none
 
 build_plugin_structure "$OUTPUT_DIR/BuiltPlugin/Regular/iphone-sim" iphonesimulator  " -extract i386  -extract  x86_64 " EmbeddedFrameworksSim-none
-
-
-

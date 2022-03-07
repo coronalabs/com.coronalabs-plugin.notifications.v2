@@ -569,7 +569,8 @@ NotificationsV2Plugin::scheduleNotification(lua_State *L)
 
     UILocalNotification *notification = IPhoneLocalNotificationEvent::CreateAndSchedule( L, 1 );
     int allowedNotificationTypes = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
-    id settings = [UIUserNotificationSettings settingsForTypes:allowedNotificationTypes categories:nil];
+    Class cls = NSClassFromString(@"UIUserNotificationSettings");
+    id settings = [cls settingsForTypes:allowedNotificationTypes categories:nil];
     [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     

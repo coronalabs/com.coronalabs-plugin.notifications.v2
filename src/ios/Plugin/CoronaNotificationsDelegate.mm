@@ -16,9 +16,48 @@
 #if PLUGIN_FIREBASE
 #import <FirebaseMessaging/FirebaseMessaging.h>
 #endif
-
+static int
+SetLaunchArgs( UIApplication *application, NSDictionary *launchOptions, lua_State *L )
+{
+    int itemsPushed = 0;
+    UILocalNotification *localNotification = [launchOptions objectForKey:UIApplicationLaunchOptionsLocalNotificationKey];
+    if ( localNotification )
+    {
+        IPhoneLocalNotificationEvent e(
+                                       localNotification, IPhoneNotificationEvent::ToApplicationState( application.applicationState ) );
+        e.Push( L );
+        itemsPushed = 1;
+    }
+    
+    NSDictionary *remoteNotification =
+        [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    
+    if ( remoteNotification )
+    {
+        IPhoneRemoteNotificationEvent e(
+                                        remoteNotification, IPhoneNotificationEvent::ToApplicationState( application.applicationState ) );
+        e.Push( L );
+        itemsPushed = 1;
+    }
+    
+    return itemsPushed;
+}
 @implementation CoronaNotificationsDelegate
-
+- (int)execute:(id<CoronaRuntime>)runtime command:(NSString*)command param:(id)param
+{
+    lua_State *L = runtime.L;
+    int itemsPushed = 0;
+    if ( [command isEqualToString:@"pushLaunchArgKey"] )
+    {
+        lua_pushstring( L, "notification" );
+        itemsPushed = 1;
+    }
+    else if ( [command isEqualToString:@"pushLaunchArgValue" ] )
+    {
+        itemsPushed = SetLaunchArgs( [UIApplication sharedApplication], param, L);
+    }
+    return itemsPushed;
+}
 - (void)willLoadMain:(id<CoronaRuntime>)runtime
 {
     // NOP
