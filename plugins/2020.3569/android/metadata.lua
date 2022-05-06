@@ -13,7 +13,7 @@ local metadata =
             applicationChildElements =
             {
                 [[
-                    <service
+                    <service android:exported="true"
                         android:name="plugin.notifications.v2.CoronaFirebaseMessagingService">
                         <intent-filter>
                             <action android:name="com.google.firebase.MESSAGING_EVENT"/>
