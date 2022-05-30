@@ -317,7 +317,9 @@ NotificationsV2Plugin::registerForPushNotifications(lua_State *L)
         }
     
         // configure and connect
-        [FIRApp configureWithOptions:firOptions];
+        if([FIRApp defaultApp] == NULL){
+            [FIRApp configureWithOptions:firOptions];
+        }
     }
 #endif
     
