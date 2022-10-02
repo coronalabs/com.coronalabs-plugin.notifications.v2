@@ -3,11 +3,13 @@ local metadata =
     plugin =
     {
         format = 'jar',
-        
-        manifest = 
+
+        manifest =
         {
             permissions = {},
-            usesPermissions = {},
+            usesPermissions = {
+              "android.permission.SCHEDULE_EXACT_ALARM"--Needed for Local Notifications
+            },
             usesFeatures = {},
 
             applicationChildElements =
@@ -23,7 +25,7 @@ local metadata =
             }
         }
     },
-    
+
     coronaManifest = {
         dependencies = {
             ["shared.firebase.messaging"] = "com.coronalabs"

@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 @SuppressWarnings({"unused", "RedundantSuppression"})
 public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
     private static final String PLUGIN_NAME = "plugin.notifications.v2";
-    private static final String PLUGIN_VERSION = "1.0.1";
+    private static final String PLUGIN_VERSION = "1.0.2";
 
     // message constants
     private static final String CORONA_TAG = "Corona";
