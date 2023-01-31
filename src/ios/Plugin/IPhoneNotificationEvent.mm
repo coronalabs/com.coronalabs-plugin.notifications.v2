@@ -135,6 +135,14 @@ IPhoneLocalNotificationEvent::CreateAndSchedule( lua_State *L, int index )
 		}
 		else if ( lua_istable( L, -1 ) )
 		{
+            lua_getfield( L, -1, "title" );
+            body = lua_tostring( L, -1 );
+            if ( body )
+            {
+                notification.alertTitle = [NSString stringWithUTF8String:body];
+            }
+            lua_pop( L, 1 );
+            
 			lua_getfield( L, -1, "body" );
 			body = lua_tostring( L, -1 );
 			if ( body )
@@ -202,7 +210,8 @@ IPhoneLocalNotificationEvent::Push( lua_State *L ) const
 
 		int index = lua_gettop( L );
 
-		SetStringField( L, index, "alert", notification, @"alertBody" );
+        SetStringField( L, index, "title", notification, @"alertTitle" );
+        SetStringField( L, index, "alert", notification, @"alertBody" );
 		SetStringField( L, index, "action", notification, @"alertAction" );
 		SetStringField( L, index, "launchImage", notification, @"alertLaunchImage" );
 		SetStringField( L, index, "sound", notification, @"soundName" );
@@ -302,6 +311,7 @@ IPhoneRemoteNotificationEvent::Push( lua_State *L ) const
             else {
                 SetStringField( L, index, "alert", notificationData, @"alert" );
             }
+            SetStringField( L, index, "title", notificationData, @"title" );
             SetStringField( L, index, "action", notificationData, @"action-loc-key" );
             SetStringField( L, index, "launchImage", notificationData, @"launch-image" );
             

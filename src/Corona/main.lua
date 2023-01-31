@@ -334,7 +334,7 @@ local scheduleLocalNotification = widget.newButton {
     labelColor = { default={ 0, 0, 0 }, over={ 0.7, 0.7, 0.7 } },
     onRelease = function(event)
         local options = {
-            alert = "Wake up!",
+            alert = {title="Cool Title Here", body="Cool Body Here"},--alert="Title Here"
             sound = "notification.wav",
             badge = 2,
             custom = { foo = "bar" }
