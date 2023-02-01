@@ -486,8 +486,8 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
                         String key = luaState.toString(-2);
                         switch (key) {
                             case "alert":
-                                if (luaState.type(-1) != LuaType.STRING) {
-                                    logMsg(ERROR_MSG, "options.alert (string) expected, got " + luaState.typeName(-1));
+                                if (luaState.type(-1) != LuaType.STRING && luaState.type(-1) != LuaType.TABLE) {
+                                    logMsg(ERROR_MSG, "options.alert (string or table) expected, got " + luaState.typeName(-1));
                                 }
                                 break;
                             case "badge":
