@@ -1,0 +1,5 @@
+android.defaultConfig {
+    minSdkVersion Math.max(minSdkVersion?.apiLevel ?: 15, 16)
+}
+ext["minSdkVersion"] = Math.max(ext.find("minSdkVersion")?:15, 16)
+implementation 'com.google.firebase:firebase-messaging:23.2.1'

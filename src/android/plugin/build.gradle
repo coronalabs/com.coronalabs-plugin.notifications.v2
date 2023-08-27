@@ -1,22 +1,22 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
     compileOptions {
         sourceCompatibility 1.8
         targetCompatibility 1.8
     }
 
     defaultConfig {
-        minSdkVersion 15
-        targetSdkVersion 29
+        minSdkVersion 19
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
     }
 }
 
 dependencies {
-    implementation 'com.google.firebase:firebase-messaging:22.0.0'
+    implementation 'com.google.firebase:firebase-messaging:23.2.1'
     implementation ':Corona@aar'
 }
 
