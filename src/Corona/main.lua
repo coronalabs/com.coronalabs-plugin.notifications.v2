@@ -277,7 +277,7 @@ local subTitle = display.newText {
 subTitle:setTextColor( 0.2, 0.2, 0.2 )
 subTitle.x, subTitle.y = display.contentCenterX, 60
 
-eventDataTextBox = native.newTextBox( display.contentCenterX, display.contentHeight - 50, display.contentWidth - 10, 100)
+eventDataTextBox = native.newTextBox( display.contentCenterX, display.contentHeight - 20, display.contentWidth - 10, 100)
 eventDataTextBox.placeholder = "Event data will appear here"
 eventDataTextBox.hasBackground = false
 
@@ -314,7 +314,7 @@ local subscribeToNewsTopic = widget.newButton {
         notifications.subscribe("news")
     end
 }
-subscribeToNewsTopic.x, subscribeToNewsTopic.y = display.contentCenterX, 150
+subscribeToNewsTopic.x, subscribeToNewsTopic.y = display.contentCenterX, 130
 
 local unsubscribeFromNewsTopic = widget.newButton {
     label = "Unsubscribe from News",
@@ -366,6 +366,17 @@ local getDeviceTokenButton = widget.newButton {
     end
 }
 getDeviceTokenButton.x, getDeviceTokenButton.y = display.contentCenterX, cancelLocalNotification.y + 60
+
+local areNotificationsEnabledButton = widget.newButton {
+    label = "Are notifications enabled",
+    width = 200,
+    height = 40,
+    labelColor = { default={ 0, 0, 0 }, over={ 0.7, 0.7, 0.7 } },
+    onRelease = function(event)
+        print("notifications enabled", notifications.areNotificationsEnabled())
+    end
+}
+areNotificationsEnabledButton.x, areNotificationsEnabledButton.y = display.contentCenterX, getDeviceTokenButton.y + 40
 
 -- local notifications: check for launch args and call listener
 if ( launchArgs and launchArgs.notification ) then
