@@ -10,5 +10,4 @@ local metadata =
 	}
 }
 
-
 return metadata

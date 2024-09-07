@@ -26,6 +26,10 @@ import com.naef.jnlua.LuaType;
 import com.naef.jnlua.NamedJavaFunction;
 import java.util.concurrent.TimeUnit;
 
+import android.app.NotificationManager;
+import android.content.Context;
+
+
 /**
  * Implements the Lua interface for the plugin.
  * <p>
@@ -184,7 +188,8 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
                 new Subscribe(),
                 new Unsubscribe(),
                 new ScheduleNotification(),
-                new CancelNotification()
+                new CancelNotification(),
+                new AreNotificationsEnabled()  // New function
         };
         String libName = L.toString(1);
         L.register(libName, luaFunctions);
@@ -567,6 +572,55 @@ public class LuaLoader implements JavaFunction, CoronaRuntimeListener {
             }
 
             return 0;
+        }
+    }
+
+    // New method to check if notifications are enabled
+    // [Lua] areNotificationsEnabled()
+    private class AreNotificationsEnabled implements NamedJavaFunction {
+        /**
+         * Gets the name of the Lua function as it would appear in the Lua script.
+         *
+         * @return Returns the name of the custom Lua function.
+         */
+        @Override
+        public String getName() {
+            return "areNotificationsEnabled";
+        }
+
+        /**
+         * This method is called when the Lua function is called.
+         *
+         * @param L Reference to the Lua state.
+         * @return Returns 1 value: boolean indicating if notifications are enabled.
+         */
+        @Override
+        public int invoke(final LuaState L) {
+            functionSignature = "notifications.areNotificationsEnabled()";
+
+            // Get application context
+            Context context = CoronaEnvironment.getApplicationContext();
+
+            // Check if notifications are enabled for the app
+            boolean areEnabled = false;
+
+            try {
+                NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+                    // For Android O and above, check the notification channel settings
+                    areEnabled = notificationManager.getImportance() != NotificationManager.IMPORTANCE_NONE;
+                } else {
+                    // For versions below Android O
+                    areEnabled = notificationManager.areNotificationsEnabled();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // Push the result back to Lua
+            L.pushBoolean(areEnabled);
+            return 1;
         }
     }
 }

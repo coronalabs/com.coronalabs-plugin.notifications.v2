@@ -42,6 +42,10 @@ function lib.cancelNotification()
     showWarning("notifications.cancelNotification()")
 end
 
+function lib.areNotificationsEnabled()
+    showWarning("notifications.areNotificationsEnabled()")
+end
+
 -------------------------------------------------------------------------------
 -- END
 -------------------------------------------------------------------------------

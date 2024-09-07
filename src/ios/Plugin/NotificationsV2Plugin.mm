@@ -80,6 +80,7 @@ class NotificationsV2Plugin
         static int cancelNotification( lua_State *L );
         static int subscribe( lua_State *L );
         static int unsubscribe( lua_State *L );
+        static int areNotificationsEnabled( lua_State *L ); // New Function
 
     private: // internal helper functions
         static void logMsg( lua_State *L, NSString *msgType,  NSString *errorMsg );
@@ -183,6 +184,7 @@ NotificationsV2Plugin::Open( lua_State *L )
             {"getDeviceToken", getDeviceToken},
             {"subscribe", subscribe},
             {"unsubscribe", unsubscribe},
+            {"areNotificationsEnabled", areNotificationsEnabled}, // New Function
 			{NULL, NULL}
         };
 
@@ -195,6 +197,39 @@ NotificationsV2Plugin::Open( lua_State *L )
 	}
 
 	return 1;
+}
+
+// New method to check if notifications are enabled
+int
+NotificationsV2Plugin::areNotificationsEnabled(lua_State *L)
+{
+    Self *context = ToLibrary(L);
+    
+    if (!context) {
+        return 0;
+    }
+    
+    Self& library = *context;
+    
+    library.functionSignature = @"notifications.areNotificationsEnabled()";
+    
+    __block BOOL enabled = NO;
+    
+    if (@available(iOS 10.0, *)) {
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        [[UNUserNotificationCenter currentNotificationCenter] getNotificationSettingsWithCompletionHandler:^(UNNotificationSettings * _Nonnull settings) {
+            enabled = (settings.authorizationStatus == UNAuthorizationStatusAuthorized);
+            dispatch_semaphore_signal(semaphore);
+        }];
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    } else {
+        // Fallback for iOS 9 and lower
+        UIUserNotificationSettings *settings = [[UIApplication sharedApplication] currentUserNotificationSettings];
+        enabled = (settings.types != UIUserNotificationTypeNone);
+    }
+    
+    lua_pushboolean(L, enabled);
+    return 1;
 }
 
 int

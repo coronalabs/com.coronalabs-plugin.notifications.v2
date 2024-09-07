@@ -39,6 +39,7 @@ For Android, all __new__ apps, or existing apps being updated with push notifica
 
 #### [notifications.registerForPushNotifications()][plugin.notifications-v2.registerForPushNotifications]
 
+#### [notifications.areNotificationsEnabled()][plugin.notifications-v2.areNotificationsEnabled]
 
 ## Project Settings
 
