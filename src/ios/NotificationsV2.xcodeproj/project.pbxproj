@@ -103,8 +103,6 @@
 		F535656D2598D11900F9A089 /* GoogleUtilities.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F58338A123EA7ABB00E0B97E /* GoogleUtilities.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F535656F2598D14B00F9A089 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F535656E2598D14B00F9A089 /* FirebaseCoreDiagnostics.framework */; };
 		F53565702598D14B00F9A089 /* FirebaseCoreDiagnostics.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F535656E2598D14B00F9A089 /* FirebaseCoreDiagnostics.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F53565722598D17200F9A089 /* GoogleDataTransport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53565712598D17200F9A089 /* GoogleDataTransport.framework */; };
-		F53565732598D17200F9A089 /* GoogleDataTransport.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F53565712598D17200F9A089 /* GoogleDataTransport.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F53565752598D18E00F9A089 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F53565742598D18E00F9A089 /* nanopb.framework */; };
 		F53565762598D18E00F9A089 /* nanopb.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F53565742598D18E00F9A089 /* nanopb.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F53565772598D1BE00F9A089 /* FBLPromises.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F58338A023EA7ABB00E0B97E /* FBLPromises.framework */; };
@@ -157,7 +155,6 @@
 				F535656B2598D0DA00F9A089 /* FirebaseInstallations.framework in Embed Frameworks */,
 				F53565762598D18E00F9A089 /* nanopb.framework in Embed Frameworks */,
 				F53565642598D08500F9A089 /* FirebaseCore.framework in Embed Frameworks */,
-				F53565732598D17200F9A089 /* GoogleDataTransport.framework in Embed Frameworks */,
 				F53565702598D14B00F9A089 /* FirebaseCoreDiagnostics.framework in Embed Frameworks */,
 				F53565782598D1BE00F9A089 /* FBLPromises.framework in Embed Frameworks */,
 				F535656D2598D11900F9A089 /* GoogleUtilities.framework in Embed Frameworks */,
@@ -227,7 +224,6 @@
 		E640B2F31BFC00BA0031FAE9 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		F53564E02598AC7400F9A089 /* NotificationsFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotificationsFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F535656E2598D14B00F9A089 /* FirebaseCoreDiagnostics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FirebaseCoreDiagnostics.framework; path = EmbeddedFrameworks/FirebaseCoreDiagnostics.framework; sourceTree = "<group>"; };
-		F53565712598D17200F9A089 /* GoogleDataTransport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleDataTransport.framework; path = EmbeddedFrameworks/GoogleDataTransport.framework; sourceTree = "<group>"; };
 		F53565742598D18E00F9A089 /* nanopb.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = nanopb.framework; path = EmbeddedFrameworks/nanopb.framework; sourceTree = "<group>"; };
 		F54A40BD1EE07F9100AF417D /* build.settings */ = {isa = PBXFileReference; lastKnownFileType = text; name = build.settings; path = ../Corona/build.settings; sourceTree = "<group>"; };
 		F54A40BE1EE07F9100AF417D /* config.lua */ = {isa = PBXFileReference; lastKnownFileType = text; name = config.lua; path = ../Corona/config.lua; sourceTree = "<group>"; };
@@ -297,7 +293,6 @@
 				F53564A82598AC7400F9A089 /* Photos.framework in Frameworks */,
 				F53564AB2598AC7400F9A089 /* AssetsLibrary.framework in Frameworks */,
 				F53565772598D1BE00F9A089 /* FBLPromises.framework in Frameworks */,
-				F53565722598D17200F9A089 /* GoogleDataTransport.framework in Frameworks */,
 				F53564AC2598AC7400F9A089 /* CoreText.framework in Frameworks */,
 				F53565752598D18E00F9A089 /* nanopb.framework in Frameworks */,
 				F53564AD2598AC7400F9A089 /* CoreVideo.framework in Frameworks */,
@@ -388,7 +383,6 @@
 			isa = PBXGroup;
 			children = (
 				F53565742598D18E00F9A089 /* nanopb.framework */,
-				F53565712598D17200F9A089 /* GoogleDataTransport.framework */,
 				F535656E2598D14B00F9A089 /* FirebaseCoreDiagnostics.framework */,
 				F583389B23EA7A9C00E0B97E /* Firebase */,
 				E640B2F31BFC00BA0031FAE9 /* Photos.framework */,
