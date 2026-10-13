@@ -43,16 +43,15 @@ echo "OUTPUT_DIR: $OUTPUT_DIR"
 checkError
 
 # iOS
-xcodebuild -project "$path/Plugin.xcodeproj" -configuration $CONFIG -sdk iphoneos -alltargets -UseModernBuildSystem=NO
+xcodebuild -project "$path/Plugin.xcodeproj" -configuration $CONFIG -sdk iphoneos -alltargets
 checkError
 
 # iOS-sim
-xcodebuild -project "$path/Plugin.xcodeproj" -configuration $CONFIG -sdk iphonesimulator -alltargets -UseModernBuildSystem=NO
+xcodebuild -project "$path/Plugin.xcodeproj" -configuration $CONFIG -sdk iphonesimulator -alltargets
 checkError
 
-# create universal binary
-lipo -create "$path"/build/$CONFIG-iphoneos/lib$TARGET_NAME.$OUTPUT_SUFFIX "$path"/build/$CONFIG-iphonesimulator/lib$TARGET_NAME.$OUTPUT_SUFFIX -output "$OUTPUT_DIR"/lib$TARGET_NAME.$OUTPUT_SUFFIX
-checkError
+# (No device+simulator "universal" lib any more: both now carry an arm64
+# slice, which lipo can't merge. The plugin structure below is the output.)
 
 
 # copy corona plugin structure
@@ -117,12 +116,11 @@ rm -rf "$OUTPUT_DIR/BuiltPlugin/"
 
 build_plugin_structure "$OUTPUT_DIR/BuiltPlugin/Firebase/iphone" iphoneos  " -extract armv7 -extract  arm64 " EmbeddedFrameworks metadata.firebase.lua
 
-build_plugin_structure "$OUTPUT_DIR/BuiltPlugin/Firebase/iphone-sim" iphonesimulator  " -extract i386  -extract  x86_64 " EmbeddedFrameworksSim metadata.firebase.lua
+build_plugin_structure "$OUTPUT_DIR/BuiltPlugin/Firebase/iphone-sim" iphonesimulator  " -extract arm64  -extract  x86_64 " EmbeddedFrameworksSim metadata.firebase.lua
 
-echo "$OUTPUT_DIR"/lib$TARGET_NAME.$OUTPUT_SUFFIX
 
 TARGET_NAME=NotificationsV2Plugin
 
 build_plugin_structure "$OUTPUT_DIR/BuiltPlugin/Regular/iphone" iphoneos  " -extract armv7 -extract  arm64 " EmbeddedFrameworks-none
 
-build_plugin_structure "$OUTPUT_DIR/BuiltPlugin/Regular/iphone-sim" iphonesimulator  " -extract i386  -extract  x86_64 " EmbeddedFrameworksSim-none
+build_plugin_structure "$OUTPUT_DIR/BuiltPlugin/Regular/iphone-sim" iphonesimulator  " -extract arm64  -extract  x86_64 " EmbeddedFrameworksSim-none
